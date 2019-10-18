@@ -32,7 +32,7 @@ impl CompositionEvent {
     ) -> DomRoot<CompositionEvent> {
         let ev = reflect_dom_object(
             Box::new(CompositionEvent {
-                uievent: UIEvent::new_inherited(),
+                uievent: UIEvent::new_inherited(window),
                 data: data,
             }),
             window,

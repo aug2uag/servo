@@ -36,9 +36,9 @@ pub struct KeyboardEvent {
 }
 
 impl KeyboardEvent {
-    fn new_inherited() -> KeyboardEvent {
+    fn new_inherited(window: &Window) -> KeyboardEvent {
         KeyboardEvent {
-            uievent: UIEvent::new_inherited(),
+            uievent: UIEvent::new_inherited(window),
             key: DomRefCell::new(DOMString::new()),
             typed_key: DomRefCell::new(Key::Unidentified),
             code: DomRefCell::new(DOMString::new()),
@@ -53,7 +53,7 @@ impl KeyboardEvent {
 
     pub fn new_uninitialized(window: &Window) -> DomRoot<KeyboardEvent> {
         reflect_dom_object(
-            Box::new(KeyboardEvent::new_inherited()),
+            Box::new(KeyboardEvent::new_inherited(window)),
             window,
             KeyboardEventBinding::Wrap,
         )
